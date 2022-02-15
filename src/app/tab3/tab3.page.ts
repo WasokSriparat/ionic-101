@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-tab3',
@@ -6,7 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  products:any;
+  constructor(private service : ProductService,private router: Router) {}
 
-  constructor() {}
+  ngOnInit(): void {
+    this.service.getProduct().subscribe((res)=>{
+      this.products = res.data;
+    });
+  }
 
 }
